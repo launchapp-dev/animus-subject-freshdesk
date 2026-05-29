@@ -1,0 +1,38 @@
+{
+  "name": "@launchapp-dev/animus-subject-freshdesk",
+  "version": "0.1.0",
+  "description": "Freshdesk tickets subject backend plugin for Animus.",
+  "license": "Elastic-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "animus-subject-freshdesk": "dist/index.cjs"
+  },
+  "files": [
+    "dist",
+    "src",
+    "plugin.toml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/build-sdk.mjs",
+    "build": "tsup && chmod +x dist/index.cjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "manifest": "node dist/index.cjs --manifest",
+    "start": "node dist/index.cjs"
+  },
+  "dependencies": {
+    "@launchapp-dev/animus-plugin-sdk": "git+https://github.com/launchapp-dev/animus-plugin-sdk-ts.git#v0.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

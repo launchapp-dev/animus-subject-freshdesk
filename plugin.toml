@@ -1,0 +1,56 @@
+schema = "animus.plugin.v1"
+name = "animus-subject-freshdesk"
+version = "0.1.0"
+plugin_kind = "subject_backend"
+description = "Freshdesk tickets subject backend plugin for Animus"
+protocol = "stdio"
+
+[binary]
+default = "animus-subject-freshdesk"
+
+[capabilities]
+streaming = false
+progress = false
+cancellation = false
+methods = [
+  "subject/list",
+  "subject/get",
+  "subject/schema",
+  "subject/create",
+  "subject/update",
+  "subject/status",
+  "freshdesk.ticket/list",
+  "freshdesk.ticket/get",
+  "freshdesk.ticket/schema",
+  "freshdesk.ticket/create",
+  "freshdesk.ticket/update",
+  "freshdesk.ticket/status",
+  "health/check",
+]
+subject_kinds = ["freshdesk.ticket"]
+
+[[env]]
+key = "FRESHDESK_API_KEY"
+description = "Freshdesk API key."
+required = true
+sensitive = true
+
+[[env]]
+key = "FRESHDESK_DOMAIN"
+description = "Freshdesk domain, for example example.freshdesk.com. FRESHDESK_BASE_URL is accepted as an alternative."
+required = false
+
+[[env]]
+key = "FRESHDESK_BASE_URL"
+description = "Freshdesk base URL, for example https://example.freshdesk.com."
+required = false
+
+[[env]]
+key = "FRESHDESK_REQUESTER_EMAIL"
+description = "Default requester email used for create calls."
+required = false
+
+[[env]]
+key = "FRESHDESK_SOURCE"
+description = "Default source id used for create calls. Defaults to 2."
+required = false
