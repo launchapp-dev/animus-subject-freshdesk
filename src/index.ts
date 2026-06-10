@@ -276,7 +276,7 @@ function buildBackend(): SubjectBackend {
       const tickets = rawTickets.filter((ticket) => matchesFilters(ticket, params));
       return {
         subjects: tickets.map(subjectFromTicket),
-        next_cursor: rawTickets.length >= (params.limit ?? 100) ? String(page + 1) : null,
+        next_cursor: rawTickets.length >= Math.max(1, Math.min(params.limit ?? 100, 100)) ? String(page + 1) : null,
         fetched_at: new Date().toISOString(),
       };
     },
